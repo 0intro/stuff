@@ -1,0 +1,51 @@
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+
+    - name: Build normalize
+      working-directory: ./cmd/normalize
+      run: go build -v ./...
+
+    - name: Build tcpproxy
+      working-directory: ./cmd/tcpproxy
+      run: go build -v ./...
+
+    - name: Build tlsproxy
+      working-directory: ./cmd/tlsproxy
+      run: go build -v ./...
+
+    - name: Build unicode
+      working-directory: ./cmd/unicode
+      run: go build -v ./...
+
+    - name: Test normalize
+      working-directory: ./cmd/normalize
+      run: go test -v ./...
+
+    - name: Test tcpproxy
+      working-directory: ./cmd/tcpproxy
+      run: go test -v ./...
+
+    - name: Test tlsproxy
+      working-directory: ./cmd/tlsproxy
+      run: go test -v ./...
+
+    - name: Test unicode
+      working-directory: ./cmd/unicode
+      run: go test -v ./...
