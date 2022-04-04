@@ -13,7 +13,7 @@ import (
 	"os"
 	"strings"
 
-	"code.google.com/p/go.text/unicode/norm"
+	"golang.org/x/text/unicode/norm"
 )
 
 var normForm = flag.String("f", "nfc", "normalization form (NFC, NFD, NFKC or NFKD)")
